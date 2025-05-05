@@ -1,4 +1,4 @@
-def policy_evaluation_No_Discount(env, policy , gamma= 1.0 , theta = 1e-2):
+def policy_evaluation(env, policy , gamma= 0.9 , theta = 1e-2):
     """
     Iterative policy evaluation using the Bellman expectation equation.
 
@@ -20,6 +20,9 @@ def policy_evaluation_No_Discount(env, policy , gamma= 1.0 , theta = 1e-2):
         new_value_table =  value_table.copy()
 
         for state in env.states:
+            if state not in env.states:
+              print(f"⚠️ Missing state in policy: {state}")
+              continue
             if env.is_terminal(state):
                 continue
             action = policy[state]
@@ -29,7 +32,8 @@ def policy_evaluation_No_Discount(env, policy , gamma= 1.0 , theta = 1e-2):
             for prob, next_state, reward in transitions:
                 value += prob * (reward +gamma * new_value_table[next_state])
 
-            delta = max (delta , abs(value- new_value_table[state]))
+            # delta = max (delta , abs(new_value_table[state]-value))
+            delta = max (delta , abs(value-new_value_table[state]))
             new_value_table[state] = value
         
         iteration += 1
