@@ -1,6 +1,6 @@
 class GridWorld:
     def __init__(self, grid_size =4 , terminal_states= [(0,0), (3,3)], default_reward = -1):
-        self.grid = grid_size
+        self.grid_size = grid_size
         self.states = [(i,j) for i in range(grid_size) for j in range(grid_size)]
         self.terminal_states = terminal_states
         self.actions = ['up', 'down', 'left', 'right']
