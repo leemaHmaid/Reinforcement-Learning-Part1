@@ -2,6 +2,7 @@ from gridworld import GridWorld
 from policy_evaluation import policy_evaluation
 from policy_improvement import policy_improvement
 from policy_iteration import policy_iteration
+from value_iteration import value_iteration, extract_policy_from_value
 
 import random
 
@@ -83,6 +84,14 @@ def test_policy_iteration():
     print_value_table(value_table, env)
     print_policy(policy, env)
 
+def test_value_iteration():
+    env = GridWorld()
+    value_table = value_iteration(env, gamma=0.9, theta=1e-4)
+
+    print_value_table(value_table, env)
+    policy = extract_policy_from_value(env, value_table, gamma=0.9)
+    print_policy(policy, env)
+
 
 
 if __name__ == "__main__":
@@ -90,4 +99,5 @@ if __name__ == "__main__":
     # test_gridworld()
     # test_policy_evaluation()
     # test_policy_improvement()
-     test_policy_iteration()
+    #  test_policy_iteration()
+     test_value_iteration()
