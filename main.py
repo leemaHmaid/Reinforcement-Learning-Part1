@@ -1,4 +1,5 @@
-from src.env import GridWorld
+from gridworld import GridWorld
+
 
 def main():
     env = GridWorld()
@@ -8,7 +9,7 @@ def main():
     state = (1,2)
     print("Actions:", env.get_possible_actions(state))
 
-    for action in env.acrtions:
+    for action in env.actions:
         transitions = env.get_transition_probabilities(state, action)
         print(f"Action: {action}")
         for prob, next_state, reward in transitions:
