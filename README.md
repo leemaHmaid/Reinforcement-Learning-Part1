@@ -3,6 +3,7 @@
 # GridWorld RL: Dynamic Programming in Python
 
 This repository implements classic **Dynamic Programming** methods for solving Markov Decision Processes (MDPs), as introduced in David Silver’s Reinforcement Learning Course.
+## First Part: Deterministic Transitions
 
 ✅ Built from scratch, no external RL libraries  
 ✅ Simple and clear Python code  
