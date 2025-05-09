@@ -2,16 +2,19 @@
 #TD(0)
 
 
+import random
+
+
 def td_predicition(env, policy, episodes, alpha=0.1, gamma=0.9):
 
     V = {state: 0.0 for state in env.states}
 
-    for ep in range(episodes):
-        state = env.states[0]
+    for _ in range(episodes):
+        state = random.choice(env.states)
         done = env.is_terminal(state)
         while not done:
 
-            action =  policy[state]
+            action =  policy(state)
             transitions = env.get_transition_probabilities(state, action)
             _, next_state, reward = transitions[0]
 
