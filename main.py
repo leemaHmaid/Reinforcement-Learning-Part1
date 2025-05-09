@@ -1,10 +1,15 @@
-from gridworld import GridWorld
-from policy_evaluation import policy_evaluation
-from policy_improvement import policy_improvement
-from policy_iteration import policy_iteration
-from value_iteration import value_iteration, extract_policy_from_value
-from monte_carlo import monte_carlo_prediction
+ 
+from src.gridworld import GridWorld
+from src.dynamic_programming.policy_evaluation import policy_evaluation
+from src.dynamic_programming.policy_improvement import policy_improvement
+from src.dynamic_programming.policy_iteration import policy_iteration
+from src.dynamic_programming.value_iteration import value_iteration
+ 
+from src.model_Free.monte_carlo import monte_carlo_prediction
 
+ 
+
+ 
 import random
 
 def print_value_table(value_table, env):

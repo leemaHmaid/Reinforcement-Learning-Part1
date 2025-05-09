@@ -1,5 +1,5 @@
-from policy_evaluation import policy_evaluation
-from policy_improvement import policy_improvement
+from .policy_evaluation import policy_evaluation
+from .policy_improvement import policy_improvement
 
 def policy_iteration(env, gamma=0.9, theta=1e-2):
 
