@@ -3,7 +3,7 @@ from src.gridworld import GridWorld
 from src.dynamic_programming.policy_evaluation import policy_evaluation
 from src.dynamic_programming.policy_improvement import policy_improvement
 from src.dynamic_programming.policy_iteration import policy_iteration
-from src.dynamic_programming.value_iteration import value_iteration
+from src.dynamic_programming.value_iteration import value_iteration, extract_policy_from_value
  
 from src.model_Free.monte_carlo import monte_carlo_prediction
 
@@ -116,9 +116,9 @@ def test_monte_carlo():
 
 if __name__ == "__main__":
     # Uncomment what you want to test
-    # test_gridworld()
-    # test_policy_evaluation()
-    # test_policy_improvement()
-    #  test_policy_iteration()
-    #  test_value_iteration()
+    test_gridworld()
+    test_policy_evaluation()
+    test_policy_improvement()
+    test_policy_iteration()
+    test_value_iteration()
     test_monte_carlo()
