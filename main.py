@@ -58,6 +58,9 @@ def main():
     elif args.test == "td":
         from tests.test_td_prediction import test_td
         test_td()
+    elif args.test == "td_lambda":
+        from tests.test_td_lambda import test_td_lambda
+        test_td_lambda()
 
 
     else:
