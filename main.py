@@ -55,6 +55,13 @@ def main():
     elif args.test == "pim":
         from test_policy_improvement import test_policy_improvement
         test_policy_improvement()
+    elif args.test == "td":
+        from tests.test_td_prediction import test_td
+        test_td()
+    elif args.test == "td_lambda":
+        from tests.test_td_lambda import test_td_lambda
+        test_td_lambda()
+
 
     else:
         print("Unknown test. Use one of: mc, pi, vi, pe, pim")
