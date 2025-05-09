@@ -1,3 +1,6 @@
+import random
+
+
 class GridWorld:
     def __init__(self, grid_size =4 , terminal_states= [(0,0), (3,3)], default_reward = -1):
         self.grid_size = grid_size
@@ -37,3 +40,19 @@ class GridWorld:
         if self.is_terminal(state):
             return []
         return self.actions
+    
+
+    def reset(self):
+        #Start in random non-terminal state
+        self.current_state = random.choice([s for s in self.states if s  not in self.terminal_states])
+        return self.current_state
+    
+    def step(self, actions):
+        if self.is_terminal(self.current_state):
+            return self.current_state, 0, True
+        action = random.choice(actions)
+        next_state = self.get_next_state(self.current_state, action)
+        reward = self.default_reward
+        done = self.is_terminal(next_state)
+        self.current_state = next_state
+        return next_state, reward, done

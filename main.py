@@ -3,6 +3,7 @@ from policy_evaluation import policy_evaluation
 from policy_improvement import policy_improvement
 from policy_iteration import policy_iteration
 from value_iteration import value_iteration, extract_policy_from_value
+from monte_carlo import monte_carlo_prediction
 
 import random
 
@@ -92,7 +93,21 @@ def test_value_iteration():
     policy = extract_policy_from_value(env, value_table, gamma=0.9)
     print_policy(policy, env)
 
+import random
 
+def random_policy(state):
+    env = GridWorld()
+    actions = env.get_possible_actions(state)
+    return random.choice(actions)
+
+
+def test_monte_carlo():
+    env = GridWorld()
+
+    V = monte_carlo_prediction(env, random_policy, episodes=500, gamma=0.9, first_visit=False)
+    for i in range(env.grid_size):
+        row = [round(V[(i, j)], 2) for j in range(env.grid_size)]
+        print(row)
 
 if __name__ == "__main__":
     # Uncomment what you want to test
@@ -100,4 +115,5 @@ if __name__ == "__main__":
     # test_policy_evaluation()
     # test_policy_improvement()
     #  test_policy_iteration()
-     test_value_iteration()
+    #  test_value_iteration()
+    test_monte_carlo()
