@@ -1,7 +1,6 @@
 import random
 from src.gridworld import GridWorld
-from src.model_Free.td import td_prediction
-from main import print_policy, print_value_table
+from src.model_Free.td import td_predicition
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -30,7 +29,7 @@ def test_td():
         return random.choice(env.get_possible_actions(state))
 
     env = GridWorld()
-    V = td_prediction(env, random_policy, episodes=1000, alpha=0.1, gamma=0.9)
+    V = td_predicition(env, random_policy, episodes=1000, alpha=0.5, gamma=0.9)
 
     print("Estimated Value Function:")
     print_value_function(V, env.grid_size)
