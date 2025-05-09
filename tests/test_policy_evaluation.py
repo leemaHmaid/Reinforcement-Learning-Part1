@@ -1,0 +1,24 @@
+import random
+from main import print_policy, print_value_table
+from src.dynamic_programming.policy_evaluation import policy_evaluation
+from src.gridworld import GridWorld
+
+
+def test_policy_evaluation():
+    env = GridWorld()
+
+    #  Build a random policy for all non-terminal states
+    policy = {}
+    for state in env.states:
+        if env.is_terminal(state):
+            continue
+        actions = env.get_possible_actions(state)
+        if actions:
+            policy[state] = random.choice(actions)
+
+    # 🔍 Evaluate the policy
+    value_table = policy_evaluation(env, policy, gamma=0.9, theta=1e-4)
+
+    # Display result
+    print_value_table(value_table, env)
+    print_policy(policy, env)
