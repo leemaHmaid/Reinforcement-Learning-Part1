@@ -1,5 +1,9 @@
 import random
 
+from src.gridworld import GridWorld
+env = GridWorld()
+ 
+
 def print_value_table(value_table, env):
     print("\n Value Function:")
     for i in range(env.grid_size):
@@ -61,10 +65,13 @@ def main():
     elif args.test == "td_lambda":
         from tests.test_td_lambda import test_td_lambda
         test_td_lambda()
+    elif args.test == "mc_control":
+        from tests.test_mc_control import test_monte_carlo_control
+        test_monte_carlo_control(env= env, num_episodes=20000, gamma=0.9, epsilon=0.1, decay=True, verbose=False)
 
 
     else:
-        print("Unknown test. Use one of: mc, pi, vi, pe, pim")
+        print("Unknown test. Use one of: mc, pi, vi, pe, pim, mc_control")
 
 if __name__ == "__main__":
     main()
