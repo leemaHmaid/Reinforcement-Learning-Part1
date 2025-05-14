@@ -2,12 +2,14 @@ import random
 
 
 class GridWorld:
-    def __init__(self, grid_size =4 , terminal_states= [(0,0), (3,3)], default_reward = -1):
+    def __init__(self, grid_size =10 , terminal_states= [(0,0), (9,9)], default_reward = -1):
         self.grid_size = grid_size
         self.states = [(i,j) for i in range(grid_size) for j in range(grid_size)]
         self.terminal_states = terminal_states
         self.actions = ['up', 'down', 'left', 'right']
         self.default_reward = default_reward
+        self.action_space = len(self.actions)
+
     
     def is_terminal(self, state ):
         return state in self.terminal_states
@@ -56,3 +58,17 @@ class GridWorld:
         done = self.is_terminal(next_state)
         self.current_state = next_state
         return next_state, reward, done
+    
+
+    def step_control(self, action):
+        if self.is_terminal(self.current_state):
+            return self.current_state, 0, True, {}
+        
+        # Convert action index to string like 'up', 'down', etc.
+        action_name = self.actions[action]
+        next_state = self.get_next_state(self.current_state, action_name)
+        reward = self.default_reward
+        done = self.is_terminal(next_state)
+        self.current_state = next_state
+    
+        return next_state, reward, done, {}
