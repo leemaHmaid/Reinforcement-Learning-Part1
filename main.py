@@ -68,6 +68,9 @@ def main():
     elif args.test == "mc_control":
         from tests.test_mc_control import test_monte_carlo_control
         test_monte_carlo_control(env= env, num_episodes=20000, gamma=0.9, epsilon=0.1, decay=True, verbose=False)
+    elif args.test == "sarsa":
+        from tests.test_SARSA import test_sarsa_control
+        test_sarsa_control(env=env, num_episodes=20000, gamma=0.9, alpha=0.1, epsilon=0.2, decay=True, verbose=True)
 
 
     else:
