@@ -6,7 +6,7 @@ def test_sarsa_control(env=None, num_episodes=5000, gamma=0.9, alpha=0.1, epsilo
     if env is None:
         env = GridWorld()
 
-    num_actions = env.action_space.n
+    num_actions = env.action_space
     agent = SARSAAgent(action_space=num_actions, gamma=gamma, alpha=alpha, epsilon=epsilon)
     
     agent.train(env, num_episodes=num_episodes, decay=decay)
