@@ -20,11 +20,14 @@ class SARSAAgent:
         td_error = td_target - self.Q[state][action]
         self.Q[state][action] += self.alpha*td_error
 
-    def get_greedy_policy(self):
-         policy ={}
-         for state in self.Q :
-              policy[state] = int(np.argmax(self.Q[state]))
-         return policy
+    def get_greedy_policy(self, terminal_states=None):
+        policy = {}
+        for state in self.Q:
+            if terminal_states and state in terminal_states:
+                policy[state] = None
+            else:
+                policy[state] = int(np.argmax(self.Q[state]))
+        return policy
     def train (self, env, num_episodes, decay = False):
         for ep in range(1, num_episodes + 1):
             state = env.reset()
