@@ -1,7 +1,7 @@
 from src.model_Free.monte_carlo_control import MonteCarloControl
 def print_policy_grid(policy, grid_size=10):
-    arrow_map = {0: '↑', 1: '↓', 2: '←', 3: '→'}
-    grid = [[' ' for _ in range(grid_size)] for _ in range(grid_size)]
+    arrow_map = {0: '↑', 1: '↓', 2: '←', 3: '→', None: '⛳'}
+    grid = [['⛳' for _ in range(grid_size)] for _ in range(grid_size)]
 
     for (i, j), action in policy.items():
         grid[i][j] = arrow_map[action]
