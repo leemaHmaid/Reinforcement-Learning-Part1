@@ -3,12 +3,13 @@ import random
 from collections import defaultdict
 
 class SARSAAgent:
-    def __init__ (self, action_space, gamma =0.9, epsilon = 0.1, alpha = 0.1):
+    def __init__ (self, action_space, gamma =0.9, epsilon = 0.1, alpha = 0.1,decay_rate=0.99):
         self.Q = defaultdict(lambda: np.zeros(action_space))
         self.gamme = gamma
         self.alpha = alpha
         self.epsilon = epsilon
         self.action_space = action_space
+        self.decay_rate = decay_rate
 
     def epsilon_greedy_action(self, state):
         if random.random() < self.epsilon:
