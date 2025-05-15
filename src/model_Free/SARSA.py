@@ -4,7 +4,7 @@ from collections import defaultdict
 
 class SARSAAgent:
     def __init__ (self, action_space, gamma =0.9, epsilon = 0.1, alpha = 0.1):
-        self.Q = defaultdict(lambda: np.zero(action_space))
+        self.Q = defaultdict(lambda: np.zeros(action_space))
         self.gamme = gamma
         self.alpha = alpha
         self.epsilon = epsilon
@@ -31,8 +31,8 @@ class SARSAAgent:
             action = self.epsilon_greedy_action(state)
             done = False
             while not done:
-                next_state, reward, done, _ = env.step(action)
-                next_action, reward, done, _ = env.step_control(next_state)
+                next_state, reward, done, _ = env.step_control(action)
+                next_action = self.epsilon_greedy_action(next_state)
 
                 self.update_Q(state, action, reward, next_state, next_action)
 
