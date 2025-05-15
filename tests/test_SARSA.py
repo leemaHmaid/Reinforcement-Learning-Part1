@@ -11,7 +11,7 @@ def test_sarsa_control(env=None, num_episodes=5000, gamma=0.9, alpha=0.1, epsilo
     
     agent.train(env, num_episodes=num_episodes, decay=decay)
     
-    policy = agent.get_greedy_policy()
+    policy = agent.get_greedy_policy(terminal_states=env.terminal_states)
 
     if verbose:
         print("\nLearned Greedy Policy (SARSA):")
