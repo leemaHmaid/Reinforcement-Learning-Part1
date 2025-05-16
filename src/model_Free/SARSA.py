@@ -1,6 +1,7 @@
 import numpy as np
 import random
 from collections import defaultdict
+import matplotlib.pyplot as plt
 
 class SARSAAgent:
     def __init__ (self, action_space, gamma =0.9, epsilon = 0.1, alpha = 0.1,decay_rate=0.99):
@@ -30,23 +31,40 @@ class SARSAAgent:
                 policy[state] = int(np.argmax(self.Q[state]))
         return policy
     def train (self, env, num_episodes, decay = False):
+        returns_per_episode = []
+        episode_lengths = []
         for ep in range(1, num_episodes + 1):
             state = env.reset()
             action = self.epsilon_greedy_action(state)
             done = False
+            G = 0
+            steps = 0
             while not done:
                 next_state, reward, done, _ = env.step_control(action)
                 next_action = self.epsilon_greedy_action(next_state)
+                G += reward
 
                 self.update_Q(state, action, reward, next_state, next_action)
 
                 state = next_state
                 action = next_action
+                steps +=1
                 if decay:
                         self.epsilon = max(0.01, self.epsilon * 0.99)
 
                 if ep % 10000 == 0:
                         print(f"Episode {ep} completed.")
+            returns_per_episode.append(G)
+            episode_lengths.append(steps)
+
+            if decay:
+                self.epsilon = max(0.01, self.epsilon * self.decay_rate)
+
+            if ep % 1000 == 0:
+                print(f"Episode {ep} completed.")
+
+        return returns_per_episode, episode_lengths
+
     
             
 
