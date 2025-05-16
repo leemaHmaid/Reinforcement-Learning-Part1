@@ -2,10 +2,10 @@ import numpy as np
 import random
 from collections import defaultdict
 
-class SARSAAgent:
+class QLearningAgent:
     def __init__ (self, action_space, gamma =0.9, epsilon = 0.1, alpha = 0.1,decay_rate=0.99):
         self.Q = defaultdict(lambda: np.zeros(action_space))
-        self.gamme = gamma
+        self.gamma = gamma
         self.alpha = alpha
         self.epsilon = epsilon
         self.action_space = action_space
@@ -16,8 +16,10 @@ class SARSAAgent:
             return random.randint(0, self.action_space - 1)
         else:
             return int(np.argmax(self.Q[state]))
-    def update_Q(self, state, action , reward, next_state, next_action):
-        td_target = reward + self.gamme * self.Q[next_state][next_action]
+    def update_Q(self, state, action , reward, next_state):
+        max_action = np.argmax(self.Q[next_state])
+
+        td_target = reward + self.gamma * self.Q[next_state][max_action]
         td_error = td_target - self.Q[state][action]
         self.Q[state][action] += self.alpha*td_error
 
@@ -36,12 +38,12 @@ class SARSAAgent:
             done = False
             while not done:
                 next_state, reward, done, _ = env.step_control(action)
-                next_action = self.epsilon_greedy_action(next_state)
+                # next_action = self.epsilon_greedy_action(next_state)
 
-                self.update_Q(state, action, reward, next_state, next_action)
+                self.update_Q(state, action, reward, next_state)
 
                 state = next_state
-                action = next_action
+                action = self.epsilon_greedy_action(next_state)
                 if decay:
                         self.epsilon = max(0.01, self.epsilon * 0.99)
 
