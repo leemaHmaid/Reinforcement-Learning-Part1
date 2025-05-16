@@ -2,13 +2,15 @@ import random
 
 
 class GridWorld:
-    def __init__(self, grid_size =10 , terminal_states= [(0,0), (9,9)], default_reward = -1):
+    def __init__(self, grid_size =10 , terminal_states= [(0,0), (9,9)], default_reward = -1, stochastic =False, stochastic_prob = 0.2):
         self.grid_size = grid_size
         self.states = [(i,j) for i in range(grid_size) for j in range(grid_size)]
         self.terminal_states = terminal_states
         self.actions = ['up', 'down', 'left', 'right']
         self.default_reward = default_reward
         self.action_space = len(self.actions)
+        self.stochastic = stochastic
+        self.stochastic_prob = stochastic_prob
 
     
     def is_terminal(self, state ):
@@ -18,6 +20,9 @@ class GridWorld:
 
         if self.is_terminal(state):
             return state
+        if self.stochastic and random.random() < self.stochastic_prob:
+            # Randomly choose a different action
+            action = random.choice(self.actions)
         i, j = state
         if action == "up":
             i = max(0, i-1)

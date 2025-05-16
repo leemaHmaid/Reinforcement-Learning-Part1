@@ -32,23 +32,36 @@ class QLearningAgent:
                 policy[state] = int(np.argmax(self.Q[state]))
         return policy
     def train (self, env, num_episodes, decay = False):
+        returns_per_episode = []
+        episode_lengths = []
         for ep in range(1, num_episodes + 1):
             state = env.reset()
             action = self.epsilon_greedy_action(state)
             done = False
+            G = 0
+            steps = 0
             while not done:
                 next_state, reward, done, _ = env.step_control(action)
                 # next_action = self.epsilon_greedy_action(next_state)
+                G += reward
 
                 self.update_Q(state, action, reward, next_state)
 
                 state = next_state
                 action = self.epsilon_greedy_action(next_state)
-                if decay:
-                        self.epsilon = max(0.01, self.epsilon * 0.99)
+                steps +=1
 
-                if ep % 10000 == 0:
-                        print(f"Episode {ep} completed.")
+ 
+
+            returns_per_episode.append(G)
+            episode_lengths.append(steps)
+
+            if decay:
+                    self.epsilon = max(0.01, self.epsilon * 0.99)
+
+            if ep % 10000 == 0:
+                    print(f"Episode {ep} completed.")
+        return returns_per_episode, episode_lengths
     
             
 

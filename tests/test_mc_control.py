@@ -27,7 +27,7 @@ def test_monte_carlo_control(env, num_episodes=5000, gamma=0.9, epsilon=0.2, dec
     num_actions = env.action_space
     agent = MonteCarloControl(action_space=num_actions, gamma=gamma, epsilon=epsilon)
     
-    agent.train(env, num_episodes=num_episodes, decay=decay)
+    returns, lengths = agent.train(env, num_episodes=num_episodes, decay=decay)
 
     policy = agent.get_greedy_policy()
 
@@ -38,4 +38,4 @@ def test_monte_carlo_control(env, num_episodes=5000, gamma=0.9, epsilon=0.2, dec
     print_q_values(agent, selected_states=[(0,0), (5,5), (9,8)])
 
 
-    return agent, policy
+    return agent, policy , returns, lengths

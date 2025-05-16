@@ -2,6 +2,7 @@ import random
 
 from src.gridworld import GridWorld
 env = GridWorld()
+stoch_env = GridWorld(stochastic=True, stochastic_prob=0.2)
  
 
 def print_value_table(value_table, env):
@@ -68,16 +69,25 @@ def main():
     elif args.test == "mc_control":
         from tests.test_mc_control import test_monte_carlo_control
         test_monte_carlo_control(env= env, num_episodes=20000, gamma=0.9, epsilon=0.1, decay=True, verbose=False)
+    elif args.test == "mc_control_exp":
+        from tests.test_mc_control_exp import test_monte_carlo_control
+        test_monte_carlo_control(env= env, num_episodes=20000, gamma=0.9, epsilon=0.1, decay=True, verbose=False)
     elif args.test == "sarsa":
         from tests.test_SARSA import test_sarsa_control
         test_sarsa_control(env=env, num_episodes=20000, gamma=0.9, alpha=0.1, epsilon=0.2, decay=True, verbose=True)
+    elif args.test == "sarsa_exp":
+        from tests.test_sarsa_experiments import test_sarsa_experiments
+        test_sarsa_experiments(env=stoch_env, num_episodes=20000, gamma=0.9, alpha=0.1, epsilon=0.2, decay=True, verbose=True)
     elif args.test == "q_learning":
         from tests.test_q_learning import test_q_learning
         test_q_learning(env=env, num_episodes=20000, gamma=0.9, alpha=0.1, epsilon=0.2, decay=True, verbose=True)
+    elif args.test == "q_exp":
+        from tests.test_q_exp import test_q_learning_experiments
+        test_q_learning_experiments(env=stoch_env, num_episodes=20000, gamma=0.9, alpha=0.1, epsilon=0.2, decay=True, verbose=True)
 
 
     else:
-        print("Unknown test. Use one of: mc, pi, vi, pe, pim, mc_control, sarsa, q_learning")
+        print("Unknown test. Use one of: mc, pi, vi, pe, pim, mc_control, sarsa,sarsa_exp, q_learning, q_exp")
 
 if __name__ == "__main__":
     main()
