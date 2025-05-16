@@ -8,7 +8,7 @@ import numpy as np
 def moving_average(x, window_size=100):
     return np.convolve(x, np.ones(window_size) / window_size, mode='valid')
 
-env = GridWorld()
+env = GridWorld(stochastic=True, stochastic_prob=0.2)
 epsilon_values = [0.1, 0.2, 0.3]
 alpha_values = [0.05, 0.1, 0.5]
 

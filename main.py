@@ -2,6 +2,7 @@ import random
 
 from src.gridworld import GridWorld
 env = GridWorld()
+stoch_env = GridWorld(stochastic=True, stochastic_prob=0.2)
  
 
 def print_value_table(value_table, env):
@@ -76,13 +77,13 @@ def main():
         test_sarsa_control(env=env, num_episodes=20000, gamma=0.9, alpha=0.1, epsilon=0.2, decay=True, verbose=True)
     elif args.test == "sarsa_exp":
         from tests.test_sarsa_experiments import test_sarsa_experiments
-        test_sarsa_experiments(env=env, num_episodes=20000, gamma=0.9, alpha=0.1, epsilon=0.2, decay=True, verbose=True)
+        test_sarsa_experiments(env=stoch_env, num_episodes=20000, gamma=0.9, alpha=0.1, epsilon=0.2, decay=True, verbose=True)
     elif args.test == "q_learning":
         from tests.test_q_learning import test_q_learning
         test_q_learning(env=env, num_episodes=20000, gamma=0.9, alpha=0.1, epsilon=0.2, decay=True, verbose=True)
     elif args.test == "q_exp":
         from tests.test_q_exp import test_q_learning_experiments
-        test_q_learning_experiments(env=env, num_episodes=20000, gamma=0.9, alpha=0.1, epsilon=0.2, decay=True, verbose=True)
+        test_q_learning_experiments(env=stoch_env, num_episodes=20000, gamma=0.9, alpha=0.1, epsilon=0.2, decay=True, verbose=True)
 
 
     else:
