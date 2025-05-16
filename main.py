@@ -80,10 +80,13 @@ def main():
     elif args.test == "q_learning":
         from tests.test_q_learning import test_q_learning
         test_q_learning(env=env, num_episodes=20000, gamma=0.9, alpha=0.1, epsilon=0.2, decay=True, verbose=True)
+    elif args.test == "q_exp":
+        from tests.test_q_exp import test_q_learning_experiments
+        test_q_learning_experiments(env=env, num_episodes=20000, gamma=0.9, alpha=0.1, epsilon=0.2, decay=True, verbose=True)
 
 
     else:
-        print("Unknown test. Use one of: mc, pi, vi, pe, pim, mc_control, sarsa,sarsa_exp, q_learning")
+        print("Unknown test. Use one of: mc, pi, vi, pe, pim, mc_control, sarsa,sarsa_exp, q_learning, q_exp")
 
 if __name__ == "__main__":
     main()

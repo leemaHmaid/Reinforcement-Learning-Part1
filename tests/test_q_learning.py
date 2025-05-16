@@ -9,7 +9,7 @@ def test_q_learning(env=None, num_episodes=5000, gamma=0.9, alpha=0.1, epsilon=0
     num_actions = env.action_space
     agent = QLearningAgent(action_space=num_actions, gamma=gamma, alpha=alpha, epsilon=epsilon)
     
-    agent.train(env, num_episodes=num_episodes, decay=decay)
+    returns, lengths =agent.train(env, num_episodes=num_episodes, decay=decay)
     
     policy = agent.get_greedy_policy(terminal_states=env.terminal_states)
 
@@ -21,4 +21,4 @@ def test_q_learning(env=None, num_episodes=5000, gamma=0.9, alpha=0.1, epsilon=0
         # Optional: Grid of arrows
         print_policy_grid(policy, grid_size=env.grid_size)
 
-    return agent, policy
+    return agent, policy , returns, lengths

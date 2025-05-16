@@ -57,6 +57,7 @@ class SARSAAgent:
             returns_per_episode.append(G)
             episode_lengths.append(steps)
 
+
             if decay:
                 self.epsilon = max(0.01, self.epsilon * self.decay_rate)
 
@@ -64,6 +65,7 @@ class SARSAAgent:
                 print(f"Episode {ep} completed.")
 
         return returns_per_episode, episode_lengths
+            
 
     
             
