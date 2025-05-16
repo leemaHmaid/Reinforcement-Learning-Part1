@@ -60,17 +60,30 @@ class MonteCarloControl:
 
 
     # train the agent using the Monte Carlo control algorithm
-    def train(self, env, num_episodes, decay= False):
-        for episode_num in range(1, num_episodes +1):
+    def train(self, env, num_episodes, decay=False):
+        returns_per_episode = []
+        episode_lengths = []
+
+        for episode_num in range(1, num_episodes + 1):
             episode = self.generate_episode(env)
             self.update_q_first_visit(episode)
 
+            # Track total return and steps
+            G = 0
+            for i, (_, _, reward) in enumerate(reversed(episode)):
+                G = self.gamma * G + reward
+            returns_per_episode.append(G)
+            episode_lengths.append(len(episode))
+
+            # Decay epsilon
             if decay:
-                self.epsilon = max(0.1, self.epsilon * 0.99)
+                self.epsilon = max(0.01, self.epsilon * 0.99)
+
             if episode_num % 1000 == 0:
                 print(f"Episode {episode_num}/{num_episodes} completed.")
-        print("Training completed.")
 
+        print("Training completed.")
+        return returns_per_episode, episode_lengths
 
         
 
