@@ -71,10 +71,13 @@ def main():
     elif args.test == "sarsa":
         from tests.test_SARSA import test_sarsa_control
         test_sarsa_control(env=env, num_episodes=20000, gamma=0.9, alpha=0.1, epsilon=0.2, decay=True, verbose=True)
+    elif args.test == "q_learning":
+        from tests.test_q_learning import test_q_learning
+        test_q_learning(env=env, num_episodes=20000, gamma=0.9, alpha=0.1, epsilon=0.2, decay=True, verbose=True)
 
 
     else:
-        print("Unknown test. Use one of: mc, pi, vi, pe, pim, mc_control")
+        print("Unknown test. Use one of: mc, pi, vi, pe, pim, mc_control, sarsa, q_learning")
 
 if __name__ == "__main__":
     main()
