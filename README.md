@@ -52,7 +52,7 @@ You'll find full plots and experiment writeups in the [`/results`](./results) fo
 
 Here’s a preview:
 
-<img src="plots/sarsa_vs_q_learning.png" width="600">
+<img src="plots/mc_control_returns.png" width="600">
 
 ---
 
