@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/banner.jpeg" width="800"/>
+  <img src="assets/banner.jpeg" width="600"/>
 </p>
 # 🧠 Reinforcement Learning from Scratch (Part1)
 
