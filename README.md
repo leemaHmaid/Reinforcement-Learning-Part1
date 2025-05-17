@@ -1,7 +1,7 @@
 # 🧠 Reinforcement Learning from Scratch (Part1)
 
 Hello everyone! I am a Machine learning master's student curious about learning RL.
-This project is my personal journey into the foundations of Reinforcement Learning (RL).  
+This project is my personal journey into the foundations of Reinforcement Learning (RL) as self-taught learner.  
 I implemented key RL algorithms from scratch - no external libraries, just NumPy and pure curiosity.
 
 Along the way, I experimented and visualized  
