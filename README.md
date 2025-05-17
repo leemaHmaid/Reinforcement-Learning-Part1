@@ -1,6 +1,8 @@
 <p align="center">
   <img src="assets/banner.jpeg" width="600"/>
 </p>
+
+---
 # 🧠 Reinforcement Learning from Scratch (Part1)
 
 Hello everyone! I am a Machine learning master's student curious about learning RL.
