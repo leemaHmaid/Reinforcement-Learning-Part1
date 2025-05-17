@@ -1,97 +1,76 @@
-# Reinforcement Learning: GridWorld Algorithms 🧠🌍
+# 🧠 Reinforcement Learning from Scratch (Part1)
 
-This repository implements foundational **Reinforcement Learning algorithms** using a custom-built GridWorld environment, inspired by **David Silver’s RL Course**.
+Hello everyone! I am a Machine learning master's student curious about learning RL.
+This project is my personal journey into the foundations of Reinforcement Learning (RL).  
+I implemented key RL algorithms from scratch - no external libraries, just NumPy and pure curiosity.
 
-✅ Built from scratch  
-✅ No external RL libraries  
-✅ Designed for learning & clarity
+Along the way, I experimented and visualized  
+*“How does exploration affect learning?”*  
+*“What happens when environments become stochastic?”*  
 
----
-
-## 🔁 Algorithms Implemented
-
-### 🔹 Dynamic Programming (Model-Based)
-> Requires full knowledge of the MDP
-
-- Policy Evaluation
-- Policy Improvement
-- Policy Iteration
-- Value Iteration
-- Optimal Policy Extraction
-
-### 🔹 Monte Carlo (Model-Free, Episodic)
-> Learns from complete sampled episodes
-
-- First-Visit MC Control
-- ε-greedy policy improvement
-- Episode sampling + return averaging
-
-### 🔹 Temporal Difference (TD) Learning
-> Learns online from bootstrapped estimates
-
-- **SARSA** (on-policy TD control)
-- ε-greedy with decay (GLIE)
-- Step-by-step updates after every action
-
-### 🔹 Q-learning (off-policy TD control) — *coming soon*
-> Learns from greedy future actions even if not taken
 
 ---
 
-## 🗺️ Environment: GridWorld
+## 🌟 What You'll Find Here
+- This repo is RL-part1 in a trial to cover the main concepts in the first 5 lectures of [David Silver’s RL Course](https://www.davidsilver.uk/teaching/):
 
-- Custom grid of configurable size (default: 10x10)
-- Deterministic transitions
-- Custom terminal states
-- Visual policy rendering with arrows
-- Easy to extend with stochasticity or walls
-
----
-
-## 🖼️ Features
-
-- Modular agent design (`MC`, `SARSA`, `DP`, `Q-learning`)
-- ε-greedy exploration with optional decay
-- Pretty-print policy arrows (↑ ↓ ← →)
-- Terminal state masking (⛳)
-- Test scripts under `/tests/` for quick runs
-- Designed to help you visualize learning
-
-## 📚 Educational Use
-
-This repo is part of an ongoing reinforcement learning learning journey  
-by **Leema Hamid** — from GridWorld all the way to deep RL.
-
-🌟 It will soon be accompanied by a **Medium article series** covering:
-
-- Monte Carlo Control  
-- SARSA  
-- Q-learning (and beyond)
+- A custom GridWorld environment (with ⛳ terminal states and arrow policies)
+- Step-by-step implementations of:
+  - Dynamic Programming (Policy Eval, Iteration, Value Iteration)
+  - Monte Carlo and TD(0) & TD (lambda) for Prediction
+  - Monte Carlo Control (First-Visit, ε-greedy)
+  - Temporal Difference (SARSA, Q-learning)
+- Smoothed reward plots and learning comparisons
+- Support for **stochastic environments**
+- Parameter studies on **ε and α** — and how they affect learning
 
 ---
 
-## 👩‍💻 About This Project
+## 🗂️ Folder Structure
 
-I'm a self-taught reinforcement learning enthusiast, currently deepening my understanding through hands-on projects like this. Everything in this repo was implemented from scratch as part of my personal learning journey — no external RL libraries, just logic, math, and curiosity.
+**`src/`** – Core implementation of agents and environment  
+├── `gridworld.py` – Custom GridWorld environment  
+├── `dynamic_programming/` – DP methods: policy/value iteration  
+├── `model_Free/` – MC, TD(prediction), SARSA, Q-learning agents  
 
-I hope this project helps others who are learning RL the hard (and fun) way.
+**` tests/`** – Test scripts to run agents and visualize results  
+├── `test_sarsa_control.py`  
+├── `test_mc_control.py`  
+├── `test_q_learning.py`  
+└── `...other tests`
+
+**`results/`** – Learning curves, experiment comparisons  
+├── `sarsa_vs_q_learning.png`  
+└── `exploration_effects.png`  
+
+**`main.py`** – CLI entry point to run agents  
+**`README.md`** – You are here :)
+
+## 📊 Sample Results
+
+You'll find full plots and experiment writeups in the [`/results`](./results) folder.
+
+Here’s a preview:
+
+<img src="results/sarsa_vs_q_learning.png" width="600">
 
 ---
 
-## 🧠 Credits
-
-- Inspired by [David Silver’s RL Course](http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html)  
-- All algorithms implemented manually for understanding
----
-
-## 🚀 Run Examples
+## 🧪 Run the Agents
 
 ```bash
-python main.py --test dp
-python main.py --test mc_control
+# Train SARSA agent
 python main.py --test sarsa
 
+# Run Monte Carlo control
+python main.py --test mc_control
+
+# Train Q-learning agent
+python main.py --test q_learning
 
 
+```
+---
+## 🙏 Credits
 
-
+This project is heavily inspired by the brilliant [**David Silver’s Reinforcement Learning Course**](https://www.davidsilver.uk/teaching/), which laid the foundation for my understanding of RL (I highly recommend it if you are beginning your journey into RL don't be scared of the math!).
