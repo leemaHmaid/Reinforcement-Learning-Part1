@@ -2,7 +2,7 @@ import random
 
 from src.gridworld import GridWorld
 env = GridWorld()
-stoch_env = GridWorld(stochastic=True, stochastic_prob=0.2)
+stoch_env = GridWorld(stochastic=True, stochastic_prob=0.5)
  
 
 def print_value_table(value_table, env):

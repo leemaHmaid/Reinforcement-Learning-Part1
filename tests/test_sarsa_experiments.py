@@ -1,3 +1,4 @@
+import os
 from test_SARSA import test_sarsa_control
 from matplotlib import pyplot as plt
 from src.gridworld import GridWorld
@@ -36,4 +37,9 @@ plt.ylabel("Smoothed Total Reward")
 plt.legend()
 plt.grid()
 plt.tight_layout()
+ 
+os.makedirs("results", exist_ok=True)
+plt.savefig("results/sarsa_experiment.png")   
 plt.show()
+# plt.close()  
+ 

@@ -49,11 +49,11 @@ class SARSAAgent:
                 state = next_state
                 action = next_action
                 steps +=1
-                if decay:
-                        self.epsilon = max(0.01, self.epsilon * 0.99)
+                # if decay:
+                #         self.epsilon = max(0.01, self.epsilon * 0.99)
 
-                if ep % 10000 == 0:
-                        print(f"Episode {ep} completed.")
+                # if ep % 10000 == 0:
+                #         print(f"Episode {ep} completed.")
             returns_per_episode.append(G)
             episode_lengths.append(steps)
 

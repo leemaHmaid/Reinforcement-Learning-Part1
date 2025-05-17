@@ -1,3 +1,4 @@
+import os
 from tests.test_q_learning import test_q_learning
 from matplotlib import pyplot as plt
 from src.gridworld import GridWorld
@@ -35,4 +36,7 @@ plt.ylabel("Smoothed Total Reward")
 plt.legend()
 plt.grid()
 plt.tight_layout()
+os.makedirs("results", exist_ok=True)
+plt.savefig("results/Q_learning.png")   
+plt.show()
 plt.show()

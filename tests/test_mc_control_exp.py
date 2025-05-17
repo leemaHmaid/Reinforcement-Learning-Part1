@@ -1,3 +1,4 @@
+import os
 from test_mc_control import test_monte_carlo_control
 from matplotlib import pyplot as plt
 from src.gridworld import GridWorld
@@ -35,4 +36,8 @@ plt.ylabel("Smoothed Total Reward")
 plt.legend()
 plt.grid()
 plt.tight_layout()
+ 
+
+os.makedirs("results", exist_ok=True)
+plt.savefig("results/mc_control_returns.png")   
 plt.show()
